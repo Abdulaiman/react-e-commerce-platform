@@ -1,11 +1,15 @@
+import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
+
+import { getRedirectResult } from "firebase/auth";
 import {
   getAuth,
   signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDocl, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { getFID } from "web-vitals";
 const firebaseConfig = {
   apiKey: "AIzaSyBDqeGrmgMfmAPEEw_HQEZxO907yt27pPI",
@@ -23,12 +27,17 @@ provider.setCustomParameters({
 });
 export const auth = getAuth();
 export const signInWithGooglePopUp = () => signInWithPopup(auth, provider);
+// export const signInWithGoogleRedirect = () => {
+//   signInWithRedirect(auth, provider);
+// };
+
 export const db = getFirestore();
 export const createUserDocumentFromAuth = async (userAuth) => {
+  if (!userAuth) return;
   const userDocRef = doc(db, "users", userAuth.uid);
   console.log(userDocRef);
   const userSnapShot = await getDoc(userDocRef);
-  console.log(userSnapShot.exists());
+  console.log(userAuth);
   if (!userSnapShot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
@@ -39,4 +48,8 @@ export const createUserDocumentFromAuth = async (userAuth) => {
     }
   }
   return userDocRef;
+};
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await createUserWithEmailAndPassword(auth, email, password);
 };
