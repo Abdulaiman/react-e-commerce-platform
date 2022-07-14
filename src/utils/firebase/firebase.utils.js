@@ -1,7 +1,7 @@
 import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 
-import { getRedirectResult } from "firebase/auth";
+import { getRedirectResult, signInWithEmailAndPassword } from "firebase/auth";
 import {
   getAuth,
   signInWithRedirect,
@@ -52,4 +52,8 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await createUserWithEmailAndPassword(auth, email, password);
+};
+export const SignInUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await signInWithEmailAndPassword(auth, email, password);
 };

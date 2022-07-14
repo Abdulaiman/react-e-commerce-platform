@@ -8,6 +8,7 @@ import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
 import { useEffect } from "react";
 import { getRedirectResult } from "firebase/auth";
 import SignInForm from "../../components/sign-in-form/sign-in-form.component";
+import "./authentication.styles.scss";
 const Authentication = () => {
   // useEffect(() => {
   //   const fetch = async () => {
@@ -30,8 +31,7 @@ const Authentication = () => {
   // };
 
   return (
-    <div>
-      <h1> Sign In Page</h1>
+    <div className="authentication-container">
       <SignInForm />
       <SignUpForm />
     </div>
