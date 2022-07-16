@@ -9,6 +9,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { getFID } from "web-vitals";
@@ -36,9 +37,9 @@ export const db = getFirestore();
 export const createUserDocumentFromAuth = async (userAuth) => {
   if (!userAuth) return;
   const userDocRef = doc(db, "users", userAuth.uid);
-  console.log(userDocRef);
+
   const userSnapShot = await getDoc(userDocRef);
-  console.log(userAuth);
+
   if (!userSnapShot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
@@ -59,3 +60,5 @@ export const SignInUserWithEmailAndPassword = async (email, password) => {
   return await signInWithEmailAndPassword(auth, email, password);
 };
 export const signOutUser = async () => await signOut(auth);
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
