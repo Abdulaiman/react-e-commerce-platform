@@ -11,9 +11,10 @@ import { DropDownContext } from "../../context/dropdown-context";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
-  const { state, setState } = DropDownContext;
-  console.log(state);
-  const dropDownHandler = () => {};
+  const { state, setState } = useContext(DropDownContext);
+  const dropDownHandler = () => {
+    setState(state ? null : true);
+  };
   return (
     <Fragment>
       <div className="navigation">
@@ -37,7 +38,7 @@ const Navigation = () => {
             <CartIcon />
           </button>
         </div>
-        <CartDropdown />
+        {state ? <CartDropdown /> : ""}
       </div>
       <Outlet />
     </Fragment>

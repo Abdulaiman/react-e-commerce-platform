@@ -13,9 +13,9 @@ root.render(
     <BrowserRouter>
       <ProductProvider>
         <UserProvider>
-          {/* <DropDownContextProvider> */}
-          <App />
-          {/* </DropDownContextProvider> */}
+          <DropDownContextProvider>
+            <App />
+          </DropDownContextProvider>
         </UserProvider>
       </ProductProvider>
     </BrowserRouter>
