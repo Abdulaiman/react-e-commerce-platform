@@ -5,19 +5,19 @@ import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { ProductProvider } from "./context/products-context";
+import { CategoriesProvider } from "./context/categories-context";
 import { DropDownContextProvider } from "./context/dropdown-context";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ProductProvider>
+      <CategoriesProvider>
         <UserProvider>
           <DropDownContextProvider>
             <App />
           </DropDownContextProvider>
         </UserProvider>
-      </ProductProvider>
+      </CategoriesProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
