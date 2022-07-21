@@ -4,7 +4,7 @@ import Navigation from "./routes/navigation/navigation.componenet";
 import Authentication from "./routes/authentication/authentication.component";
 import Shop from "./routes/shop/shop.component";
 import CheckOut from "./routes/checkout/checkout.component";
-import Hats from "./routes/hats/hats.component";
+
 const App = () => {
   return (
     <Routes>

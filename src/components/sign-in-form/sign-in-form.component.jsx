@@ -1,12 +1,8 @@
-import { async } from "@firebase/util";
 import "./sign-in-form.styles.jsx";
-import { Link } from "react-router-dom";
+
 import FormInput from "../form-input/form-input.component";
-import { useState, useContext } from "react";
-import {
-  createUserDocumentFromAuth,
-  SignInUserWithEmailAndPassword,
-} from "../../utils/firebase/firebase.utils";
+import { useState } from "react";
+import { SignInUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { signInWithGooglePopUp } from "../../utils/firebase/firebase.utils";
 import {
@@ -14,7 +10,6 @@ import {
   SignInContainer,
   Click,
 } from "./sign-in-form.styles.jsx";
-// import { BUTTON_TYPE_CLASSES } from "../button/button.component.jsx";
 const SignInForm = () => {
   const defaultFormField = {
     email: "",

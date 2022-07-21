@@ -1,7 +1,6 @@
 import ProductCard from "../../components/product card/product-card.component";
 import { CategoriesContext } from "../../context/categories-context";
-import { useContext, Fragment } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 const Hats = () => {
   const { categoriesMap } = useContext(CategoriesContext);
 

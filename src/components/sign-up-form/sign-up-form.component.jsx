@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import { SignUpContainer, H2 } from "./sign-up-form.styles";
 
 import FormInput from "../form-input/form-input.component";
