@@ -1,5 +1,5 @@
 import { async } from "@firebase/util";
-import "./sign-up-form.styles.scss";
+import { SignUpContainer, H2 } from "./sign-up-form.styles";
 
 import FormInput from "../form-input/form-input.component";
 import { useState } from "react";
@@ -52,8 +52,8 @@ const SignUpForm = () => {
   };
   console.log(formField);
   return (
-    <div className="sign-up-container">
-      <h2>don't have an account?</h2>
+    <SignUpContainer>
+      <H2>don't have an account?</H2>
       <span>sign in with userName and Password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -93,7 +93,7 @@ const SignUpForm = () => {
         />
         <Button type="submit">sign up</Button>
       </form>
-    </div>
+    </SignUpContainer>
   );
 };
 export default SignUpForm;
