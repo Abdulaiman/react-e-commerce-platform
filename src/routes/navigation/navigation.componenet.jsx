@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Fragment } from "react";
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
+import { useSelector } from "react-redux";
 import CartIcon from "../../components/cart Icon/cart-icon.component";
 import {
   NavigationContainer,
@@ -14,9 +15,9 @@ import { UserContext } from "../../context/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 import { DropDownContext } from "../../context/dropdown-context";
-
+import { selectCurrentUser } from "../../store/user.selector";
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   const { state, setState } = useContext(DropDownContext);
   const dropDownHandler = () => {
     setState(state ? null : true);

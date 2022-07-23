@@ -3,22 +3,24 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
 import App from "./App";
+import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { CategoriesProvider } from "./context/categories-context";
 import { DropDownContextProvider } from "./context/dropdown-context";
+import { store } from "./store/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <CategoriesProvider>
-        <UserProvider>
+    <Provider store={store}>
+      <BrowserRouter>
+        <CategoriesProvider>
           <DropDownContextProvider>
             <App />
           </DropDownContextProvider>
-        </UserProvider>
-      </CategoriesProvider>
-    </BrowserRouter>
+        </CategoriesProvider>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
