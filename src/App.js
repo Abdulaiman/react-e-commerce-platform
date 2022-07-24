@@ -11,6 +11,7 @@ import {
   onAuthStateChangedListener,
   signOutUser,
 } from "./utils/firebase/firebase.utils";
+
 import { useDispatch } from "react-redux";
 const App = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const App = () => {
     }, []);
     return unsubscribe;
   }, []);
+
   return (
     <Routes>
       <Route path="/" element={<Navigation />}>

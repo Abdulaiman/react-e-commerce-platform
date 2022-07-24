@@ -11,7 +11,7 @@ import {
 } from "./navigation.styles";
 
 import { useContext } from "react";
-import { UserContext } from "../../context/user.context";
+
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 import { DropDownContext } from "../../context/dropdown-context";

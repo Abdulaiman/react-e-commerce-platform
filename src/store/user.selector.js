@@ -1,1 +1,6 @@
-export const selectCurrentUser = (state) => state.user.currentUser;
+import { createSelector } from "reselect";
+const userMemoizer = (state) => state.user;
+export const selectCurrentUser = createSelector(
+  [userMemoizer],
+  (user) => user.currentUser
+);
