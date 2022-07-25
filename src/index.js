@@ -5,17 +5,13 @@ import App from "./App";
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-
-import { DropDownContextProvider } from "./context/dropdown-context";
 import { store } from "./store/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <DropDownContextProvider>
-          <App />
-        </DropDownContextProvider>
+        <App />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

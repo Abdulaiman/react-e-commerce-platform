@@ -1,6 +1,4 @@
 import "./checkout.styles.jsx";
-import { DropDownContext } from "../../context/dropdown-context";
-import { useContext } from "react";
 import {
   CheckoutContainer,
   CheckoutHeader,
@@ -9,9 +7,13 @@ import {
   Total,
 } from "./checkout.styles.jsx";
 import CheckoutItem from "../../components/checkout items/checkout-item.component";
+import { setCartItemsSelector } from "../../store/cart.selector.js";
+import { useSelector } from "react-redux";
+import { cartTotalSelector } from "../../store/cart.selector.js";
 const CheckOut = () => {
-  const { cartItem, totalAmount } = useContext(DropDownContext);
-  console.log(totalAmount);
+  // const { cartItem, totalAmount } = useContext(DropDownContext);
+  const totalAmount = useSelector(cartTotalSelector);
+  const cartItem = useSelector(setCartItemsSelector);
   return (
     <CheckoutContainer>
       <CheckoutHeader>

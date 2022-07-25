@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { DropDownContext } from "../../context/dropdown-context";
 import {
   CheckOutItemContainer,
   ImageContainer,
@@ -11,11 +9,32 @@ import {
   Value,
   RemoveButton,
 } from "./checkout-item.styles";
+import {
+  addItemToCart,
+  decreaseItemQuantity,
+  removeItemFromCart,
+} from "../../store/cart/cart.action";
+import { useSelector } from "react-redux";
+import { setCartItemsSelector } from "../../store/cart.selector";
+import { useDispatch } from "react-redux";
+import { createAction } from "../../utils/reducer/reducer.utils";
+import CART_ACTION_TYPE from "../../store/cart/cart.type";
 const CheckoutItem = ({ item }) => {
-  const { id, name, quantity, imageUrl, price } = item;
-
-  const { addItemToCart, removeItemFromCart, decreaseItemQuantity } =
-    useContext(DropDownContext);
+  const { name, quantity, imageUrl, price } = item;
+  const cartItem = useSelector(setCartItemsSelector);
+  const dispatch = useDispatch();
+  const addItem = () => {
+    const newCartItem = addItemToCart(cartItem, item);
+    dispatch(createAction(CART_ACTION_TYPE.setCartItem, newCartItem));
+  };
+  const decreaseItem = () => {
+    const newCartItem = decreaseItemQuantity(cartItem, item);
+    dispatch(createAction(CART_ACTION_TYPE.setCartItem, newCartItem));
+  };
+  const removeItem = () => {
+    const newCartItem = removeItemFromCart(cartItem, item);
+    dispatch(createAction(CART_ACTION_TYPE.setCartItem, newCartItem));
+  };
   return (
     <CheckOutItemContainer>
       <ImageContainer>
@@ -24,15 +43,13 @@ const CheckoutItem = ({ item }) => {
       <Name>{name}</Name>
 
       <Quantity>
-        <Arrow onClick={() => decreaseItemQuantity(item)}>&#10094;</Arrow>
+        <Arrow onClick={decreaseItem}>&#10094;</Arrow>
         <Value>{quantity}</Value>
-        <Arrow onClick={() => addItemToCart(item)}>&#10095;</Arrow>
+        <Arrow onClick={addItem}>&#10095;</Arrow>
       </Quantity>
 
       <Price>{price}</Price>
-      <RemoveButton onClick={() => removeItemFromCart(item)}>
-        &#10005;
-      </RemoveButton>
+      <RemoveButton onClick={removeItem}>&#10005;</RemoveButton>
     </CheckOutItemContainer>
   );
 };

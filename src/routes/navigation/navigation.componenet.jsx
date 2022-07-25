@@ -9,18 +9,19 @@ import {
   NavLink,
   LogoContainer,
 } from "./navigation.styles";
+import { setStateSelector } from "../../store/cart.selector";
 
-import { useContext } from "react";
-
+import { useDispatch } from "react-redux";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
-import { DropDownContext } from "../../context/dropdown-context";
 import { selectCurrentUser } from "../../store/user.selector";
+import { setState } from "../../store/cart/cart.action";
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
-  const { state, setState } = useContext(DropDownContext);
+  const state = useSelector(setStateSelector);
+  const dispatch = useDispatch();
   const dropDownHandler = () => {
-    setState(state ? null : true);
+    dispatch(setState(state ? false : true));
   };
   return (
     <Fragment>
